@@ -1,6 +1,6 @@
 #include <doctest/doctest.h>
 
-#include <vcd/recognizers/fundamental.h>
+#include <paco/fundamental.h>
 
 #include <string>
 #include <vector>
@@ -9,7 +9,7 @@ using namespace paco;
 
 TEST_SUITE("Recognizers") {
   TEST_CASE("Empty") {
-    recognizers::empty recognizer;
+    empty recognizer;
 
     SUBCASE("Matches the empty string") {
       std::string empty_string("");
@@ -28,7 +28,7 @@ TEST_SUITE("Recognizers") {
   }
 
   TEST_CASE("Any") {
-    recognizers::any recognizer;
+    any recognizer;
     SUBCASE("Matches any character") {
       std::string content("abcd");
       auto result = recognizer.matches(content);
@@ -45,7 +45,7 @@ TEST_SUITE("Recognizers") {
 
   TEST_CASE("Satisfying") {
     auto func = [](std::string_view const view) { return view.at(0) == 'a'; };
-    recognizers::satisfying recognizer(std::make_unique<recognizers::any>(), func);
+    satisfying recognizer(std::make_unique<any>(), func);
 
     SUBCASE("Matches character for which the predicate is true") {
       std::string content("abba");

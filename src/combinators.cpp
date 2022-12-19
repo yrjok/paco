@@ -3,9 +3,7 @@
 #include <cassert>
 #include <functional>
 
-namespace vcd {
-
-namespace recognizers {
+namespace paco {
 
 either::either (pointer first, pointer second)
   : first_(std::move(first))
@@ -112,6 +110,4 @@ auto negate::clone () const -> pointer {
   return std::make_unique<negate>(negated_->clone());
 }
 
-} // ns recognizers
-
-} // ns vcd
+} // ns paco

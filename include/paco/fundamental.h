@@ -5,9 +5,7 @@
 #include <string_view>
 #include <functional>
 
-namespace vcd {
-
-namespace recognizers {
+namespace paco {
 
 class empty : public recognizer_base {
 public:
@@ -39,6 +37,4 @@ private:
   predicate pred_;
 };
 
-} // ns recognizers
-
-} // ns vcd
+} // ns paco

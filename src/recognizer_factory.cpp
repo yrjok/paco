@@ -1,14 +1,14 @@
-#include <vcd/recognizers/recognizer_factory.h>
-#include <vcd/recognizers/fundamental.h>
-#include <vcd/recognizers/combinators.h>
-#include <vcd/recognizers/recognizer.h>
+#include <paco/recognizer_factory.h>
+#include <paco/fundamental.h>
+#include <paco/combinators.h>
+#include <paco/recognizer.h>
 
 #include <cassert>
 #include <memory>
 #include <utility>
 #include <string_view>
 
-namespace vcd {
+namespace paco {
 
 namespace {
   template <class T, class ...Args>
@@ -16,8 +16,6 @@ namespace {
     return recognizer(std::make_unique<T>(std::forward<Args>(args)...));
   }
 } // ns anonymous
-
-using namespace recognizers;
 
 recognizer recognizer_factory::digit () {
   auto func = [](std::string_view view) { 
@@ -141,4 +139,4 @@ recognizer recognizer_factory::value_change () {
   );
 }
 
-} // ns vcd
+} // ns paco

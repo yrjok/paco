@@ -1,12 +1,10 @@
-#include <vcd/recognizers/fundamental.h>
+#include <paco/fundamental.h>
 
 #include <optional>
 #include <functional>
 #include <utility>
 
-namespace vcd {
-
-namespace recognizers {
+namespace paco {
 
 auto empty::matches (std::string_view const content) const -> match {
   return content.empty() ? match(content) : std::nullopt;
@@ -46,7 +44,4 @@ std::unique_ptr<recognizer_base> satisfying::clone () const {
   return std::make_unique<satisfying>(other_->clone(), pred_);
 }
 
-} // ns recognizers
-
-} // ns vcd
-
+} // ns paco

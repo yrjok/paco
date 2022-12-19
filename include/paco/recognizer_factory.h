@@ -1,8 +1,8 @@
 #pragma once
 
-#include <vcd/recognizers/recognizer.h>
+#include <paco/recognizer.h>
 
-namespace vcd {
+namespace paco {
 
 class recognizer_factory {
 public:
@@ -46,4 +46,4 @@ public:
   static recognizer value_change ();
 };
 
-} // ns vcd
+} // ns paco

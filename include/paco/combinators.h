@@ -6,9 +6,7 @@
 #include <memory>
 #include <string_view>
 
-namespace vcd {
-
-namespace recognizers {
+namespace paco {
 
 /**
  * Matches if either the first or the second matcher matches.
@@ -83,6 +81,4 @@ private:
   pointer negated_;
 };
 
-} // ns recognizers
-
-} // ns vcd
+} // ns paco
