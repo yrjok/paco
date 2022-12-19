@@ -3,6 +3,7 @@
 #include <paco/recognizer_base.h>
 #include <paco/recognizer.h>
 
+#include <functional>
 #include <memory>
 #include <string_view>
 
@@ -66,7 +67,7 @@ private:
 };
 
 /**
- * Returns an empty match if the negated matches does NOT match.
+ * Returns an size one match if the negated matches does NOT match.
  */
 class negate : public recognizer_base {
 public:
@@ -79,6 +80,25 @@ public:
 
 private:
   pointer negated_;
+};
+
+/**
+ * Matches if the match produced by the given mather also satisfies a predicate.
+*/
+class satisfying : public recognizer_base {
+public:
+  using predicate = std::function<bool(std::string_view)>;
+
+  satisfying (std::unique_ptr<recognizer_base> other, predicate pred);
+  satisfying (recognizer_base const & other, predicate pred);
+
+  match matches (std::string_view const content) const override;
+
+  std::unique_ptr<recognizer_base> clone () const override;
+
+private:
+  std::unique_ptr<recognizer_base> other_;
+  predicate pred_;
 };
 
 } // ns paco

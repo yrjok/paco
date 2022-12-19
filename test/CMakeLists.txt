@@ -14,8 +14,8 @@ target_sources(run_tests
   PRIVATE
     test_runner.cpp
     unit-fundamentals.cpp
+    unit-combinators.cpp
     # unit-recognizers.cpp
-    #unit-combinators.cpp
     #unit-recognizer_factory.cpp
 )
 target_link_libraries(run_tests PRIVATE paco)

@@ -1,6 +1,6 @@
 #include <doctest/doctest.h>
 
-#include <paco/fundamental.h>
+#include <paco/fundamentals.h>
 
 #include <string>
 #include <vector>

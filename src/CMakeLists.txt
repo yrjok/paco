@@ -3,7 +3,7 @@ add_library(paco STATIC)
 target_sources(paco
   PRIVATE
     recognizer.cpp
-    fundamental.cpp
+    fundamentals.cpp
     combinators.cpp
-    recognizer_factory.cpp
+    #recognizer_factory.cpp
 )

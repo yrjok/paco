@@ -1,5 +1,5 @@
 #include <paco/recognizer_factory.h>
-#include <paco/fundamental.h>
+#include <paco/fundamentals.h>
 #include <paco/combinators.h>
 #include <paco/recognizer.h>
 

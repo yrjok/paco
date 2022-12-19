@@ -110,4 +110,27 @@ auto negate::clone () const -> pointer {
   return std::make_unique<negate>(negated_->clone());
 }
 
+satisfying::satisfying (std::unique_ptr<recognizer_base> other, predicate pred)
+  : other_(std::move(other))
+  , pred_(std::move(pred))
+{ }
+
+satisfying::satisfying (recognizer_base const & other, predicate pred)
+  : other_(other.clone())
+  , pred_(std::move(pred))
+{ }
+
+auto satisfying::matches (std::string_view const content) const -> match {
+  auto result = other_->matches(content);
+  if (result.has_value() and pred_(result.value())) {
+    return result;
+  }
+  return std::nullopt;
+}
+
+std::unique_ptr<recognizer_base> satisfying::clone () const {
+  return std::make_unique<satisfying>(other_->clone(), pred_);
+}
+
+
 } // ns paco

@@ -1,20 +1,20 @@
 #include <doctest/doctest.h>
 
-#include <vcd/recognizers/fundamental.h>
-#include <vcd/recognizers/combinators.h>
+#include <paco/fundamentals.h>
+#include <paco/combinators.h>
 
 #include <string>
 #include <vector>
 
-using namespace vcd;
+using namespace paco;
 
 TEST_SUITE("Combinators") {
   TEST_CASE("Either") {
-    recognizers::any any;
-    recognizers::satisfying first(any.clone(), [](auto v) { return v == "a"; });
-    recognizers::satisfying second(any.clone(), [](auto v) { return v == "b"; });
+    auto base = std::make_unique<fundamentals::any>();
+    satisfying first(base->clone(), [](auto v) { return v == "a"; });
+    satisfying second(base->clone(), [](auto v) { return v == "b"; });
 
-    recognizers::either recognizer(first.clone(), second.clone());
+    either recognizer(first.clone(), second.clone());
 
     SUBCASE("Matches using the first recognizer") {
       std::string content("abcd");
@@ -39,11 +39,11 @@ TEST_SUITE("Combinators") {
   }
 
   TEST_CASE("Sequence") {
-    recognizers::any any;
-    recognizers::satisfying first(any.clone(), [](auto v) { return v == "a"; });
-    recognizers::satisfying second(any.clone(), [](auto v) { return v == "b"; });
+    auto base = std::make_unique<fundamentals::any>();
+    satisfying first(base->clone(), [](auto v) { return v == "a"; });
+    satisfying second(base->clone(), [](auto v) { return v == "b"; });
 
-    recognizers::sequence recognizer(first.clone(), second.clone());
+    sequence recognizer(first.clone(), second.clone());
 
     SUBCASE("Matches sequences") {
       std::string content("ab");
@@ -68,9 +68,9 @@ TEST_SUITE("Combinators") {
   }
 
   TEST_CASE("Many") {
-    recognizers::any any;
-    recognizers::satisfying first(any.clone(), [](auto v) { return v == "y"; });
-    recognizers::many recognizer(first.clone());
+    auto base = std::make_unique<fundamentals::any>();
+    satisfying first(base->clone(), [](auto v) { return v == "y"; });
+    many recognizer(first.clone());
 
     SUBCASE("Matches a sequences of as many matching parts as possible") {
       std::string content("yyyyyba");
@@ -90,9 +90,9 @@ TEST_SUITE("Combinators") {
   }
 
   TEST_CASE("Negate") {
-    recognizers::any any;
-    recognizers::satisfying negated(any.clone(), [](auto v) { return v == "a"; });
-    recognizers::negate recognizer(negated);
+    auto base = std::make_unique<fundamentals::any>();
+    satisfying negated(base->clone(), [](auto v) { return v == "a"; });
+    negate recognizer(negated);
 
     SUBCASE("Returns size one match if the negated recognizer fails.") {
       std::string content("sheep");

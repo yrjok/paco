@@ -1,6 +1,6 @@
 #include <paco/recognizer.h>
 
-#include <paco/fundamental.h>
+#include <paco/fundamentals.h>
 #include <paco/combinators.h>
 #include <paco/recognizer_base.h>
 
@@ -9,7 +9,7 @@
 namespace paco {
 
 recognizer::recognizer ()
-  : impl_(std::make_unique<empty>())
+  : impl_(std::make_unique<fundamentals::empty>())
 { }
 
 recognizer::recognizer (std::unique_ptr<recognizer_base> impl)
