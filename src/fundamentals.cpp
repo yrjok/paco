@@ -1,10 +1,12 @@
-#include <paco/fundamental.h>
+#include <paco/fundamentals.h>
 
 #include <optional>
 #include <functional>
 #include <utility>
 
 namespace paco {
+
+namespace fundamentals {
 
 auto empty::matches (std::string_view const content) const -> match {
   return content.empty() ? match(content) : std::nullopt;
@@ -43,5 +45,7 @@ auto satisfying::matches (std::string_view const content) const -> match {
 std::unique_ptr<recognizer_base> satisfying::clone () const {
   return std::make_unique<satisfying>(other_->clone(), pred_);
 }
+
+} // ns fundamentals
 
 } // ns paco

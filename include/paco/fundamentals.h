@@ -7,6 +7,8 @@
 
 namespace paco {
 
+namespace fundamentals {
+
 class empty : public recognizer_base {
 public:
   match matches (std::string_view const content) const override;
@@ -36,5 +38,7 @@ private:
   std::unique_ptr<recognizer_base> other_;
   predicate pred_;
 };
+
+} // fundamentals
 
 } // ns paco
