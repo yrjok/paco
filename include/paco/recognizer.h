@@ -31,13 +31,18 @@ public:
   match matches (std::string_view const content) const;
 
   recognizer_base const & impl () const;
+
+  /**
+   * Create a chained sequence recognizer.
+  */
+  recognizer then (recognizer const & other) const;
+
 private:
   // Members
   std::unique_ptr<recognizer_base> impl_;
 };
 
 recognizer operator|| (recognizer const & lhs, recognizer const & rhs);
-recognizer operator&& (recognizer const & lhs, recognizer const & rhs);
 recognizer operator! (recognizer const & other);
 
 } // ns paco

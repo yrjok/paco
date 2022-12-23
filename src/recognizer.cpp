@@ -58,12 +58,12 @@ recognizer_base const & recognizer::impl () const {
   return *impl_;
 }
 
-recognizer operator|| (recognizer const & lhs, recognizer const & rhs) {
-  return either(lhs, rhs);
+recognizer recognizer::then (recognizer const & other) const {
+  return sequence(*this, other);
 }
 
-recognizer operator&& (recognizer const & lhs, recognizer const & rhs) {
-  return sequence(lhs, rhs);
+recognizer operator|| (recognizer const & lhs, recognizer const & rhs) {
+  return either(lhs, rhs);
 }
 
 recognizer operator! (recognizer const & other) {
