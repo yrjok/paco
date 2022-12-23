@@ -5,5 +5,5 @@ target_sources(paco
     recognizer.cpp
     fundamentals.cpp
     combinators.cpp
-    #recognizer_factory.cpp
+    common.cpp
 )
