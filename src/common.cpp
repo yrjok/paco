@@ -59,6 +59,10 @@ recognizer alfanumeric () {
   return many(alfanumeric_char());
 }
 
+recognizer whitespace () {
+  return many(whitespace_char());
+}
+
 recognizer literal (char character) {
   auto predicate = [=](std::string_view text) {
     return text.size() == 1 and text.front() == character;
