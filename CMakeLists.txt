@@ -7,7 +7,7 @@ project(
   LANGUAGES CXX
 )
 
-option(BUILD_TESTS "Also build all the tests" ON)
+option(BUILD_TESTS "Also build all the tests" OFF)
 
 set(CMAKE_CXX_STANDARD 20)
 
